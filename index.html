@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автозапуск видео и звука</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        #video-container {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video" autoplay muted loop>
+            <source src="Haha.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео элемент.
+        </video>
+    </div>
+
+    <audio id="audio" autoplay>
+        <source src="Haha.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио элемент.
+    </audio>
+
+    <script>
+        // Убедимся, что звук воспроизводится даже если браузер блокирует автозапуск
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('audio');
+            var video = document.getElementById('video');
+
+            // Попытка воспроизвести звук
+            audio.play().catch(error => {
+                console.log("Автозапуск звука заблокирован. Требуется взаимодействие пользователя.");
+            });
+
+            // Воспроизведение видео
+            video.play();
+        });
+    </script>
+</body>
+</html>
